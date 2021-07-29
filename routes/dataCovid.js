@@ -9,7 +9,6 @@ const { JSDOM } = jsdom;
 const vgmUrl = "https://covid-vacuna-ar.vercel.app/";
 /* GET users listing. */
 
-//return: title of web, scrapping html
 router.get("/dosis", function (req, res, next) {
   got(vgmUrl)
     .then((response) => {
@@ -28,15 +27,56 @@ router.get("/dosis", function (req, res, next) {
       });
     });
 });
-router.get("/vacunas", function (req, res, next) {
+router.get("/totaldosis", function (req, res, next) {
   got(vgmUrl)
     .then((response) => {
       const $ = cheerio.load(response.body);
       //llamo funcion para armar json de datos covid
 
       res.status(200).json({
-        status: "Correcto",
+        status: "Total Dosis",
+        //llamo helper para obtener vacunas
         data: fnVacunas.getVaccines($),
+      });
+    })
+    .catch((err) => {
+      console.log(err);
+      res.status(404).json({
+        status: "Error",
+        data: err,
+      });
+    });
+});
+router.get("/primeradosis", function (req, res, next) {
+  got(vgmUrl)
+    .then((response) => {
+      const $ = cheerio.load(response.body);
+      //llamo funcion para armar json de datos covid
+
+      res.status(200).json({
+        status: "Total Primera Dosis",
+        //llamo helper para obtener vacunas
+        data: fnVacunas.getVaccinesPrim($),
+      });
+    })
+    .catch((err) => {
+      console.log(err);
+      res.status(404).json({
+        status: "Error",
+        data: err,
+      });
+    });
+});
+router.get("/segundadosis", function (req, res, next) {
+  got(vgmUrl)
+    .then((response) => {
+      const $ = cheerio.load(response.body);
+      //llamo funcion para armar json de datos covid
+
+      res.status(200).json({
+        status: "Total segunda Dosis",
+        //llamo helper para obtener vacunas
+        data: fnVacunas.getVaccinesSeg($),
       });
     })
     .catch((err) => {
