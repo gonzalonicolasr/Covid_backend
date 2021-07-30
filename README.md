@@ -17,7 +17,7 @@ git clone https://github.com/gonzalonicolasr/Covid_backend.git
 ```
 dirigirse al directorio de la aplicacion
 
-# returns 'words'
+# instalar dependencias nodejs
 NPM install
 
 # Modo desarrollo (nodemon)
