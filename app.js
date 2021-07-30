@@ -43,16 +43,6 @@ const swaggerOptions = {
 //creo servidor con la configuracion swagger
 const swaggerDocs = swaggerJsDoc(swaggerOptions);
 app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerDocs));
-// Routes
-/**
- * @swagger
- * /data/dosis:
- *  get:
- *    description: utilizado para obtener todas las dosis aplicadas
- *    responses:
- *      '200':
- *        description: respuesta obtenemos un json con todas las dosis aplicadas en argentina
- */
 
 app.use(logger("dev"));
 app.use(express.json());
